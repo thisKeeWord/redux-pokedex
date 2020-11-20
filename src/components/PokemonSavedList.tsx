@@ -1,21 +1,23 @@
 import React, { FunctionComponent, useEffect } from "react";
 import { connect } from "react-redux";
 
-const PokemonSavedList: FunctionComponent = (
-	store,
-	{ state, pokemonSaved, onTodoClick }: any
-) => {
-	console.log(store, "props", state, "asdf", pokemonSaved);
+const PokemonSavedList: FunctionComponent = (props: any) => {
+	console.log(props.pokemon, "props");
 	return (
-		<ul>
-			{pokemonSaved &&
-				pokemonSaved.map((pokemon: any) => <li>{pokemon.name}</li>)}
-		</ul>
+		<>
+			<ul>
+				{props.pokemon.map((pokemon: any, index: number) => (
+					<li key={index}>{pokemon.name}</li>
+				))}
+			</ul>
+			{props.error}
+		</>
 	);
 };
 
-const mapStateToProps = (state: any) => ({
-	pokemonSaved: state.pokemon,
-});
+const mapStateToProps = (state: any) => {
+	console.log(state, "state");
+	return { ...state };
+};
 
 export default connect(mapStateToProps)(PokemonSavedList);

@@ -5,8 +5,6 @@ import { fetchCharacters } from "../actions";
 const Search: FunctionComponent = ({ dispatch, pokemonSaved }: any) => {
 	let input: any;
 
-	// TODO: API call requires thunks
-	// Call it a day after getting thunk step down
 	const fetchEntry = (value: any) => dispatch(fetchCharacters(value));
 
 	return (

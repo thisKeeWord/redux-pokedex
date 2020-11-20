@@ -13,13 +13,14 @@ export const pokemonReducer = (state = initialState, action: any) => {
 			return Object.assign({}, state, {
 				pokemon: [...state.pokemon, action.payload],
 				fetching: false,
+				error: null,
 			});
 
 		case FETCHING_POKEMON:
-			return Object.assign({}, state, { fetching: true });
+			return Object.assign({}, state, { fetching: true, error: null });
 
 		case ERROR:
-			return Object.assign({}, state, { error: action.payload });
+			return Object.assign({}, state, { error: "Pokemon not found" });
 
 		default:
 			return state;
