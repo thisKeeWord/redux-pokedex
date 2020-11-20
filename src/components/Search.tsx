@@ -1,30 +1,31 @@
-import React, { FormEvent, FunctionComponent } from "react";
+import React, { FunctionComponent } from "react";
 import { connect } from "react-redux";
+import { fetchCharacters } from "../actions";
 
 const Search: FunctionComponent = ({ dispatch, pokemonSaved }: any) => {
 	let input: any;
 
 	// TODO: API call requires thunks
 	// Call it a day after getting thunk step down
-	const fetchEntry = (value: any) => console.log(value);
-
-	const onSubmit = (e: FormEvent) => {
-		e.preventDefault();
-		if (!input.value.trim()) {
-			return;
-		}
-		fetchEntry(input.value);
-		input.value = "";
-	};
+	const fetchEntry = (value: any) => dispatch(fetchCharacters(value));
 
 	return (
-		<form onSubmit={onSubmit}>
+		<form
+			onSubmit={(e) => {
+				e.preventDefault();
+				if (!input.value.trim()) {
+					return;
+				}
+				fetchEntry(input.value);
+				input.value = "";
+			}}
+		>
 			<input
 				ref={(node) => {
 					input = node;
 				}}
 			/>
-			<button type="submit">Add Todo</button>
+			<button type="submit">Find Pokemon</button>
 		</form>
 	);
 };

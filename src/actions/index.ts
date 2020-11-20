@@ -15,7 +15,7 @@ export const fetchCharacters = (pokemon: string) => {
 		getCharacters
 			.then((res) => {
 				console.log("Res", res);
-				dispatch({ type: FETCH_POKEMON, payload: res.data.results });
+				dispatch({ type: FETCH_POKEMON, payload: res.data });
 			})
 
 			.catch((error) => {

@@ -11,7 +11,7 @@ export const pokemonReducer = (state = initialState, action: any) => {
 	switch (action.type) {
 		case FETCH_POKEMON:
 			return Object.assign({}, state, {
-				pokemon: state.pokemon.concat(action.payload),
+				pokemon: [...state.pokemon, action.payload],
 				fetching: false,
 			});
 

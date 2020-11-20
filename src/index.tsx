@@ -1,5 +1,5 @@
 import React from "react";
-import ReactDOM from "react-dom";
+import { render } from "react-dom";
 import { createStore, applyMiddleware } from "redux";
 import { Provider } from "react-redux";
 import thunk from "redux-thunk";
@@ -11,11 +11,11 @@ import reportWebVitals from "./reportWebVitals";
 
 const store = createStore(rootReducer, applyMiddleware(thunk, logger));
 
-ReactDOM.render(
+console.log(store, "store");
+
+render(
 	<Provider store={store}>
-		<React.StrictMode>
-			<App />
-		</React.StrictMode>
+		<App />
 	</Provider>,
 	document.getElementById("root")
 );
