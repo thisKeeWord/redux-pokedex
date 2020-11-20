@@ -1,8 +1,7 @@
-import React, { FunctionComponent, useEffect } from "react";
+import React, { FunctionComponent } from "react";
 import { connect } from "react-redux";
 
 const PokemonSavedList: FunctionComponent = (props: any) => {
-	console.log(props.pokemon, "props");
 	return (
 		<>
 			<ul>
@@ -15,9 +14,8 @@ const PokemonSavedList: FunctionComponent = (props: any) => {
 	);
 };
 
-const mapStateToProps = (state: any) => {
-	console.log(state, "state");
-	return { ...state };
-};
+const mapStateToProps = (state: any) => ({
+	...state,
+});
 
 export default connect(mapStateToProps)(PokemonSavedList);

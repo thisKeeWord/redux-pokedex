@@ -2,10 +2,18 @@ import React, { FunctionComponent } from "react";
 import { connect } from "react-redux";
 import { fetchCharacters } from "../actions";
 
-const Search: FunctionComponent = ({ dispatch, pokemonSaved }: any) => {
+const Search: FunctionComponent = ({ pokemon, dispatch }: any) => {
+	console.log(pokemon, "pokemon");
 	let input: any;
 
-	const fetchEntry = (value: any) => dispatch(fetchCharacters(value));
+	const fetchEntry = (value: any): void => {
+		const pokemonSaved = pokemon.find(
+			({ id, name }: any) => id.toString() === value || name === value
+		);
+		if (!pokemonSaved) {
+			dispatch(fetchCharacters(value));
+		}
+	};
 
 	return (
 		<form
@@ -14,7 +22,7 @@ const Search: FunctionComponent = ({ dispatch, pokemonSaved }: any) => {
 				if (!input.value.trim()) {
 					return;
 				}
-				fetchEntry(input.value);
+				fetchEntry(input.value.toLowerCase());
 				input.value = "";
 			}}
 		>
@@ -29,7 +37,7 @@ const Search: FunctionComponent = ({ dispatch, pokemonSaved }: any) => {
 };
 
 const mapStateToProps = (state: any) => ({
-	pokemonSaved: state.pokemon,
+	...state,
 });
 
 export default connect(mapStateToProps)(Search);
