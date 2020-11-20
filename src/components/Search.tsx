@@ -17,6 +17,7 @@ const Search: FunctionComponent = ({ pokemon, dispatch }: any) => {
 
 	return (
 		<form
+			className="search"
 			onSubmit={(e) => {
 				e.preventDefault();
 				if (!input.value.trim()) {
@@ -26,12 +27,16 @@ const Search: FunctionComponent = ({ pokemon, dispatch }: any) => {
 				input.value = "";
 			}}
 		>
+			<h4>Pokemon</h4>
 			<input
+				className="input"
 				ref={(node) => {
 					input = node;
 				}}
 			/>
-			<button type="submit">Find Pokemon</button>
+			<button className="submit" type="submit">
+				Search
+			</button>
 		</form>
 	);
 };
@@ -41,10 +46,3 @@ const mapStateToProps = (state: any) => ({
 });
 
 export default connect(mapStateToProps)(Search);
-
-// mapStateToProps to get Pokemon from state
-// in onSubmit handler, check for Pokemon in the state
-// * if pokemon exists in state, return that
-// * else make fetchEntry call
-// useDispatch hook
-// useSelector

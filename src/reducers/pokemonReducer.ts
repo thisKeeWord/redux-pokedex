@@ -1,10 +1,16 @@
-import { FETCH_POKEMON, FETCHING_POKEMON, ERROR } from "../actions";
+import {
+	FETCH_POKEMON,
+	FETCHING_POKEMON,
+	ERROR,
+	SELECT_POKEMON,
+} from "../actions";
 
 const initialState = {
 	pokemon: [],
 	fetching: false,
 	fetched: false,
 	error: null,
+	selectedPokemon: {},
 };
 
 export const pokemonReducer = (state = initialState, action: any) => {
@@ -14,6 +20,12 @@ export const pokemonReducer = (state = initialState, action: any) => {
 				pokemon: [...state.pokemon, action.payload],
 				fetching: false,
 				error: null,
+				selectedPokemon: action.payload,
+			});
+
+		case SELECT_POKEMON:
+			return Object.assign({}, state, {
+				selectedPokemon: action.payload,
 			});
 
 		case FETCHING_POKEMON:
