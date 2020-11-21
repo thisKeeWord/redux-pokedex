@@ -3,7 +3,6 @@ import { connect } from "react-redux";
 import { fetchCharacters } from "../actions";
 
 const Search: FunctionComponent = ({ pokemon, dispatch }: any) => {
-	console.log(pokemon, "pokemon");
 	let input: any;
 
 	const fetchEntry = (value: any): void => {
@@ -24,7 +23,6 @@ const Search: FunctionComponent = ({ pokemon, dispatch }: any) => {
 					return;
 				}
 				fetchEntry(input.value.toLowerCase());
-				input.value = "";
 			}}
 		>
 			<h4>Pokemon</h4>

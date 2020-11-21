@@ -78,3 +78,9 @@ h4 {
 .entry {
 	padding-left: 50px;
 }
+
+.error {
+	margin-bottom: 5px;
+	display: block;
+	color: tomato;
+}

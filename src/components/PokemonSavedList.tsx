@@ -1,16 +1,16 @@
 import React, { FunctionComponent } from "react";
 import { connect } from "react-redux";
-import { SELECT_POKEMON } from "../actions";
+import { getSavedPokemon } from "../actions";
 
 const PokemonSavedList: FunctionComponent = (props: any) => {
 	const onEntryClick = (name: string): void => {
 		const pokemon = props.pokemon.find((pokemon: any) => pokemon.name === name);
-		props.dispatch({ type: SELECT_POKEMON, payload: pokemon });
+		props.dispatch(getSavedPokemon(pokemon));
 	};
 
 	return (
 		<div className="pokemon-list">
-			{props.error}
+			<span className="error">{props.error}</span>
 			{props.pokemon.length > 0 && (
 				<>
 					<span>Searched Pokemon</span>
